@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tweaking all the text stylistically */
+
+h1{
+    color: #df7f62;
+    font-weight: 600;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+h2,
+p {
+    color: #fba58b;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+h3{
+    color: #df7f62;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+main{
+    font-family: 'Poppins', sans-serif;
+
+    /* this is the miminum height of the background, this means it will occupy 100% of the entire visible screen/monitor */
+    min-height: 100vh;
+
+    /* to mix up two colors and make gradient from bottom left to top right */
+    background: linear-gradient(to right top,#fdf29a, #fba58b);
+
+    /* use three bottom tags to center the white box made in .glass element. MUST USE FLEX FOR IT TO DISPLAY! */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass{
+    background: white;
+    min-height: 80vh;
+    width: 60%;
+
+    /* we can add RGBA which changes opacity (which is the 0.7 and 0.3 value) of color to make glassy looking*/
+    background: linear-gradient(
+    to right bottom, 
+    RGBA(255, 255, 255, 0.7), 
+    RGBA(255, 255, 255, 0.3)
+    );
+
+    /* to make a circular sides on box. REM stands for the amount of pixels*/
+    border-radius: 2rem;
+
+    /* to put the glass as 1st layer so circles are behind. The BIGGER the NUMBER the more FORWARD */
+    z-index: 3;
+
+    /* to create blur effect for glass */
+    backdrop-filter: blur(2rem);
+
+    /* Takes two divs (dashboard and links) and puts them vertically */
+    display: flex;
+}
+
+.circle1,.circle2{
+    background: white;
+    background: linear-gradient(
+        to right bottom, 
+        RGBA(255, 255, 255, 0.8), 
+        RGBA(255, 255, 255, 0.3)
+        );
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+
+    /* creates rounded circles */
+    border-radius: 50%;
+    z-index: 2;
+    
+}
+
+
+/* To modify placement of each circle */
+.circle1{
+    top: 5%;
+    right: 15%;
+}
+
+.circle2{
+    bottom: 5%;
+    left: 10%;
+}
+
+.dashboard{
+    /* Makes it so it takes up all the available space left. Makes spacing more even (done for .games as well) */
+    flex: 1;
+    display: flex;
+    /* to make it vertical again after using flex. Remember Flex must always be used in order to use justify content and align */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    /* aligns all text to center */
+    text-align: center;
+
+    /* copied same gradient from glass */
+    background: linear-gradient(
+        to right bottom, 
+        RGBA(255, 255, 255, 0.7), 
+        RGBA(255, 255, 255, 0.3)
+        );
+
+        border-radius: 2rem;
+        /* to make rounded edges for dashboard */
+}
+
+/* had to make space for bottom and top of dashboard */
+.user{
+    margin-top: 2rem;
+}
+
+.pro{
+    margin-bottom: 1rem;
+}
+
+
+.link{
+    display: flex;
+    margin: 2rem 0rem;
+    padding: 1rem 5rem;
+    align-items: center;
+}
+
+.link h2{
+    padding: 0rem 2rem;
+}
+
+.games{
+    flex: 1;
+}
+
+/* styling the "join pro" button */
+.pro{
+    background: linear-gradient(to right top,#fdf29a, #fba58b);
+    border-radius: 2rem;
+    color: white;
+    padding: 1rem;
+    position: relative;
+    /* adding position relative makes it so the image cannot move along the screen but only the button spacing itself. Used after pro img top rightVVV */
+}
+
+.pro img{
+    position: absolute;
+    top: -10%;
+    right: 10%;
+}
+
+.pro h2{
+    width: 40%;
+    color: white;
+    font-weight: 600;
+}
+
+/* Games Section! */
+
+.status{
+    margin-bottom: 3rem;
+
+}
+
+.status input{
+background: linear-gradient(
+    to right bottom, 
+    RGBA(255, 255, 255, 0.7), 
+    RGBA(255, 255, 255, 0.3)
+);
+border: none;
+width: 50%;
+padding: 0.5rem;
+border-radius: 2rem;
+}
+
+.games{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 5rem;
+
+}
+
+.card {
+    display: flex;
+    background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5) 
+    );
+    border-radius: 1rem;
+    margin: 2rem 0rem;
+    padding: 2rem;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+    justify-content: space-evenly;
+/* makes words in box spaced evenly, no longer percentagr near title of game */
+}
+
+.progress{
+    background: linear-gradient(to right top,#f0c6b9, #fba58b);
+    width: 100%;
+    height: 25%;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* A pseudo element that generates additional styling */
+.progress::after {
+    content: "";
+    /* content: "" is needed everytime you use a pseudo element like after or before. the "" is necessary or else can't use */
+    width: 100%;
+    height: 100%;
+    background: rgb(236, 236, 236);
+    position: absolute;
+    left: 90%;
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.percentage{
+    font-weight: bold;
+    background: linear-gradient(to right top,#f0c6b9, #fba58b);
+    -webkit-background-clip: text;
+    /* makes background only for percentage number */
+    -webkit-text-fill-color: transparent;
+}
